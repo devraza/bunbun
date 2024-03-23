@@ -1,9 +1,16 @@
 [package]
 name = "bunbun"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 
 [dependencies]
 colored = "2.1.0"
 sysinfo = "0.30.7"
 whoami = "1.5.1"
+
+[profile.release]
+strip = true # Strip debug symbols
+opt-level = "z" # Optimise for size
+lto = true # Enable link type optimisation
+codegen-units = 1 # Reduce parallel code generation units
+panic = "abort" # Abort on panic!
