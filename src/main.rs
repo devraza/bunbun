@@ -1,7 +1,7 @@
 use colored::Colorize;
+use std::env;
 use sysinfo::System;
 use whoami::*;
-use std::env;
 
 fn main() {
     let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
