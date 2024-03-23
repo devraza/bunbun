@@ -5,7 +5,7 @@ use std::env;
 
 fn main() {
     let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
-    let ascii = vec!["(\\ /)", "( . .)", &bottom];
+    let ascii = ["(\\ /)", "( . .)", &bottom];
 
     let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
     let user = env!("USER");
