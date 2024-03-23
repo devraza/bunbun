@@ -26,9 +26,9 @@ fn main() {
         wm = "N/A";
     }
 
-    println!("{:>34}", combined.magenta().bold());
-    println!("{:>19} {}", "Arch".cyan(), arch);
-    println!("{:>9} {:>11} {}", ascii[0], "Kernel".red(), kernel);
-    println!("{:>10} {:>6} {}", ascii[1], "WM".green(), wm);
-    println!("{:>29} {:>5} {}", ascii[2], "OS".blue(), pretty);
+    println!("{:>34}", combined.italic());
+    println!("{:>19} {}", "Arch".cyan().bold(), arch);
+    println!("{:>9} {:>11} {}", ascii[0], "Kernel".red().bold(), kernel);
+    println!("{:>10} {:>6} {}", ascii[1], "WM".green().bold(), wm);
+    println!("{:>29} {:>5} {}", ascii[2], "OS".blue().bold(), pretty);
 }
