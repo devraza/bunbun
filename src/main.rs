@@ -7,6 +7,13 @@ fn main() {
     let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
     let ascii = vec!["(\\ /)", "( . .)", &bottom];
 
+    let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
+    let user = env!("USER");
+
+    let arch = arch();
+
+    let combined = format!("{}@{}", user, hostname);
+
     let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
     let pretty = distro();
     let wm: &str;
@@ -19,7 +26,9 @@ fn main() {
         wm = "N/A";
     }
 
-    println!("  {}      {} {}", ascii[0], "Kernel".red(), kernel);
-    println!("  {}     {} {}", ascii[1], "WM".green(), wm);
-    println!("  {}    {} {}", ascii[2], "OS".blue(), pretty);
+    println!("{:>34}", combined.magenta().bold());
+    println!("{:>19} {}", "Arch".cyan(), arch);
+    println!("{:>9} {:>11} {}", ascii[0], "Kernel".red(), kernel);
+    println!("{:>10} {:>6} {}", ascii[1], "WM".green(), wm);
+    println!("{:>29} {:>5} {}", ascii[2], "OS".blue(), pretty);
 }
