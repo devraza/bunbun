@@ -35,7 +35,7 @@ fn main() {
     let ascii = ["(\\ /)", "( . .)", &bottom];
 
     let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
-    let user = var("USER").unwrap();
+    let user = username();
 
     let combined = format!("{}@{}", user.italic(), hostname.italic());
 
