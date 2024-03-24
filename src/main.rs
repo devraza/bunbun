@@ -2,17 +2,38 @@ use colored::Colorize;
 use std::env;
 use sysinfo::System;
 use whoami::*;
+use clap::Parser;
+
+/// A simple and adorable sysinfo utility written in Rust.
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    /// Show ASCII art only
+    #[arg(short, long)]
+    ascii_only: bool,
+
+    /// Show CPU architecture
+    #[arg(short = 'x', long)]
+    arch: bool,
+}
+
+fn cpu_arch(args: Args) {
+    if args.arch {
+        let arch = arch();
+        println!("{:>17} {}", "Arch".cyan().bold(), arch);
+    }
+}
 
 fn main() {
+    let args = Args::parse();
+
     let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
     let ascii = ["(\\ /)", "( . .)", &bottom];
 
     let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
     let user = env!("USER");
 
-    let arch = arch();
-
-    let combined = format!("{}@{}", user, hostname);
+    let combined = format!("{}@{}", user.italic(), hostname.italic());
 
     let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
     let pretty = distro();
@@ -26,9 +47,16 @@ fn main() {
         wm = "N/A";
     }
 
-    println!("{:>32}", combined.italic());
-    println!("{:>17} {}", "Arch".cyan().bold(), arch);
-    println!("{:>8} {:>6} {}", ascii[0], "OS".blue().bold(), pretty);
-    println!("{:>9} {:>9} {}", ascii[1], "Kernel".red().bold(), kernel);
-    println!("{:>28} {:>4} {}", ascii[2], "WM".green().bold(), wm);
+    println!();
+    if !args.ascii_only {
+        println!("{:>48}", combined);
+        cpu_arch(args);
+        println!("{:>8} {:>6} {}", ascii[0], "OS".blue().bold(), pretty);
+        println!("{:>9} {:>9} {}", ascii[1], "Kernel".red().bold(), kernel);
+        println!("{:>28} {:>4} {}", ascii[2], "WM".green().bold(), wm);
+    } else {
+        for i in ascii {
+            println!("  {}", i);
+        }
+    }
 }
