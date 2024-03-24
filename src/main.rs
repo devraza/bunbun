@@ -15,9 +15,13 @@ struct Args {
     /// Show CPU architecture
     #[arg(short = 'x', long)]
     arch: bool,
+
+    /// Hide terminal colours 
+    #[arg(short = 'z', long, default_value_t = false)]
+    hide_colours: bool,
 }
 
-fn cpu_arch(args: Args) {
+fn cpu_arch(args: &Args) {
     if args.arch {
         let arch = arch();
         println!("{:>17} {}", "Arch".cyan().bold(), arch);
@@ -50,7 +54,7 @@ fn main() {
     println!();
     if !args.ascii_only {
         println!("{:>48}", combined);
-        cpu_arch(args);
+        cpu_arch(&args);
         println!("{:>8} {:>6} {}", ascii[0], "OS".blue().bold(), pretty);
         println!("{:>9} {:>9} {}", ascii[1], "Kernel".red().bold(), kernel);
         println!("{:>28} {:>4} {}", ascii[2], "WM".green().bold(), wm);
@@ -58,5 +62,15 @@ fn main() {
         for i in ascii {
             println!("  {}", i);
         }
+    }
+
+    if !args.hide_colours {
+        println!();
+        let colors = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
+        let mut color_string: String = "    ".to_owned();
+        for color in colors {
+            color_string.push_str(&format!("{:>3}", "●".color(color)));
+        }
+        println!("{}", color_string);
     }
 }
