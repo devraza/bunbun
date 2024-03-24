@@ -74,4 +74,6 @@ fn main() {
         }
         println!("{}", color_string);
     }
+
+    println!();
 }
