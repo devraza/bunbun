@@ -20,7 +20,7 @@
           })
           .buildRustPackage {
             pname = "bunbun";
-            version = "1.1.0";
+            version = "1.2.0";
             src = ./.;
             cargoLock.lockFile = ./Cargo.lock;
           };
