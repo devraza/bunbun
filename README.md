@@ -1,6 +1,10 @@
 # bunbun
 > A simple and adorable sysinfo utility written in Rust.
 
+<p align="center">
+  <img src="./demo/demo.gif" alt="bunbun demo"/>
+</p>
+
 ## Installation
 To build `bunbun`, you'll need [Rust](https://rust-lang.org) installed:
 ```bash
