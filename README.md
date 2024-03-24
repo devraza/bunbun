@@ -2,7 +2,7 @@
 > A simple and adorable sysinfo utility written in Rust.
 
 <p align="center">
-  <img src="./demo/demo.gif" alt="bunbun demo"/>
+  <img src="./demo/demo.gif" alt="bunbun demo" width="300"/>
 </p>
 
 ## Installation
