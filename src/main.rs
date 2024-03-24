@@ -1,5 +1,5 @@
 use colored::Colorize;
-use std::env::var;
+use std::{env::var, path::PathBuf};
 use sysinfo::System;
 use whoami::*;
 use clap::Parser;
@@ -16,17 +16,31 @@ struct Args {
     #[arg(short = 'x', long)]
     arch: bool,
 
+    /// Show the kernel version
+    #[arg(short = 'k', long)]
+    kernel: bool,
+
     /// Hide terminal colours 
     #[arg(short = 'z', long, default_value_t = false)]
     hide_colours: bool,
 }
 
+// Display the CPU architecture
 fn cpu_arch(args: &Args) {
     if args.arch {
         let arch = arch();
         println!("{:>17} {}", "Arch".cyan().bold(), arch);
     }
 }
+
+// Display the kernel version
+fn display_kernel(args: &Args) {
+    if args.kernel {
+        let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
+        println!("{:>19} {}", "Kernel".yellow().bold(), kernel);
+    }
+}
+
 
 fn main() {
     let args = Args::parse();
@@ -39,7 +53,6 @@ fn main() {
 
     let combined = format!("{}@{}", user.italic(), hostname.italic());
 
-    let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
     let pretty = distro();
 
     let wm: String;
@@ -60,13 +73,17 @@ fn main() {
         wm = "N/A".to_string();
     }
 
+    let shell_path = PathBuf::from(var("SHELL").unwrap_or(String::from("N/A")));
+    let shell = shell_path.file_name().expect("Could not get $SHELL path").to_str().unwrap();
+
     println!();
     if !args.ascii_only {
         println!("{: <13}{}", "", combined);
         cpu_arch(&args);
-        println!("{:>8} {:>6} {}", ascii[0], "OS".blue().bold(), pretty);
-        println!("{:>9} {:>9} {}", ascii[1], "Kernel".red().bold(), kernel);
-        println!("{:>28} {:>4} {}", ascii[2], "WM".green().bold(), wm);
+        display_kernel(&args);
+        println!("{:>8} {:>6} {}", ascii[0], "OS".red().bold(), pretty);
+        println!("{:>9} {:>8} {}", ascii[1], "Shell".green().bold(), shell);
+        println!("{:>28} {:>4} {}", ascii[2], "WM".blue().bold(), wm);
     } else {
         for i in ascii {
             println!("  {}", i);
