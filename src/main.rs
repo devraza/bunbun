@@ -1,8 +1,8 @@
-use clap::Parser;
 use colored::Colorize;
-use std::env;
+use std::env::var;
 use sysinfo::System;
 use whoami::*;
+use clap::Parser;
 
 /// A simple and adorable sysinfo utility written in Rust.
 #[derive(Parser, Debug)]
@@ -16,7 +16,7 @@ struct Args {
     #[arg(short = 'x', long)]
     arch: bool,
 
-    /// Hide terminal colours
+    /// Hide terminal colours 
     #[arg(short = 'z', long, default_value_t = false)]
     hide_colours: bool,
 }
@@ -41,12 +41,14 @@ fn main() {
 
     let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
     let pretty = distro();
-    let mut wm: &str = "N/A";
+    let wm: &str;
 
     if cfg!(windows) {
         wm = "Aero";
     } else if cfg!(unix) {
-        wm = env!("XDG_CURRENT_DESKTOP");
+        wm = var("XDG_CURRENT_DESKTOP");
+    } else {
+        wm = "N/A";
     }
 
     println!();
@@ -64,9 +66,7 @@ fn main() {
 
     if !args.hide_colours && !args.ascii_only {
         println!();
-        let colors = [
-            "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white",
-        ];
+        let colors = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
         let mut color_string: String = "    ".to_owned();
         for color in colors {
             color_string.push_str(&format!("{:>3}", "●".color(color)));
