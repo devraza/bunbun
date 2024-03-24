@@ -41,14 +41,15 @@ fn main() {
 
     let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
     let pretty = distro();
-    let wm: &str;
+
+    let wm: String;
 
     if cfg!(windows) {
-        wm = "Aero";
+        wm = "Aero".to_string();
     } else if cfg!(unix) {
-        wm = var("XDG_CURRENT_DESKTOP");
+        wm = var("XDG_CURRENT_DESKTOP").unwrap();
     } else {
-        wm = "N/A";
+        wm = "N/A".to_string();
     }
 
     println!();
