@@ -49,10 +49,12 @@ fn main() {
     } else if cfg!(unix) {
         let xdg_current_desktop = var("XDG_CURRENT_DESKTOP");
         let desktop = desktop_env().to_string();
-        if !xdg_current_desktop.is_err() && (desktop != "Unknown: Unknown") {
+        if desktop != "Unknown: Unknown" {
             wm = desktop;
-        } else {
+        } else if !xdg_current_desktop.is_err() {
             wm = xdg_current_desktop.unwrap();
+        } else {
+            wm = "N/A".to_string();
         }
     } else {
         wm = "N/A".to_string();
