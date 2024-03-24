@@ -6,7 +6,7 @@ Set Height 600
 
 Set Shell "bash"
 
-Type "./target/release/bunbun"
+Type "../target/release/bunbun"
 Sleep 500ms
 Enter
 
