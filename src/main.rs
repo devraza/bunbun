@@ -64,7 +64,7 @@ fn main() {
         }
     }
 
-    if !args.hide_colours {
+    if !args.hide_colours && !args.ascii_only {
         println!();
         let colors = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
         let mut color_string: String = "    ".to_owned();
