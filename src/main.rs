@@ -47,7 +47,13 @@ fn main() {
     if cfg!(windows) {
         wm = "Aero".to_string();
     } else if cfg!(unix) {
-        wm = var("XDG_CURRENT_DESKTOP").unwrap();
+        let xdg_current_desktop = var("XDG_CURRENT_DESKTOP");
+        let desktop = desktop_env().to_string();
+        if !xdg_current_desktop.is_err() && (desktop != "Unknown: Unknown") {
+            wm = desktop;
+        } else {
+            wm = xdg_current_desktop.unwrap();
+        }
     } else {
         wm = "N/A".to_string();
     }
