@@ -54,7 +54,7 @@ fn main() {
 
     println!();
     if !args.ascii_only {
-        println!("{:>48}", combined);
+        println!("{: <13}{}", "", combined);
         cpu_arch(&args);
         println!("{:>8} {:>6} {}", ascii[0], "OS".blue().bold(), pretty);
         println!("{:>9} {:>9} {}", ascii[1], "Kernel".red().bold(), kernel);
