@@ -13,7 +13,7 @@
       in rec
       {
         packages.default =
-          (pkgs.makeRustPlatform.buildRustPackage {
+          pkgs.makeRustPlatform.buildRustPackage {
             pname = "bunbun";
             version = "1.3.0";
             src = ./.;
