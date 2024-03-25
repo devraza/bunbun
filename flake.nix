@@ -5,7 +5,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs-unstable, utils, fenix, ... }:
+  outputs = { self, nixpkgs-unstable, utils, ... }:
     utils.lib.eachDefaultSystem
     (
       system: let
