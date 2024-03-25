@@ -12,8 +12,7 @@
         pkgs = import nixpkgs-unstable { inherit system; };
       in rec
       {
-        packages.default =
-          pkgs.makeRustPlatform.buildRustPackage {
+        packages.default = pkgs.rustPlatform.buildRustPackage {
             pname = "bunbun";
             version = "1.3.0";
             src = ./.;
