@@ -1,7 +1,12 @@
 [package]
 name = "bunbun"
+description = "A simple and adorable sysinfo utility."
+authors = ["Muhammad Nauman Raza <devraza@skiff.com>"]
 version = "1.3.0"
 edition = "2021"
+categories = ["command-line-utilities"]
+license-file = "LICENSE"
+readme = "README.md"
 
 [dependencies]
 clap = { version = "4.5.3", features = ["derive"] }
