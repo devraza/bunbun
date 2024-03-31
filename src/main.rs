@@ -1,8 +1,8 @@
+use clap::Parser;
 use colored::Colorize;
 use std::{env::var, path::PathBuf};
 use sysinfo::System;
 use whoami::*;
-use clap::Parser;
 
 /// A simple and adorable sysinfo utility written in Rust.
 #[derive(Parser, Debug)]
@@ -20,7 +20,7 @@ struct Args {
     #[arg(short = 'k', long)]
     kernel: bool,
 
-    /// Hide terminal colours 
+    /// Hide terminal colours
     #[arg(short = 'z', long, default_value_t = false)]
     hide_colours: bool,
 }
@@ -40,7 +40,6 @@ fn display_kernel(args: &Args) {
         println!("{:>19} {}", "Kernel".yellow().bold(), kernel);
     }
 }
-
 
 fn main() {
     let args = Args::parse();
@@ -74,7 +73,11 @@ fn main() {
     }
 
     let shell_path = PathBuf::from(var("SHELL").unwrap_or(String::from("N/A")));
-    let shell = shell_path.file_name().expect("Could not get $SHELL path").to_str().unwrap();
+    let shell = shell_path
+        .file_name()
+        .expect("Could not get $SHELL path")
+        .to_str()
+        .unwrap();
 
     println!();
     if !args.ascii_only {
@@ -92,7 +95,9 @@ fn main() {
 
     if !args.hide_colours && !args.ascii_only {
         println!();
-        let colors = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"];
+        let colors = [
+            "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white",
+        ];
         let mut color_string: String = "    ".to_owned();
         for color in colors {
             color_string.push_str(&format!("{:>3}", "●".color(color)));
