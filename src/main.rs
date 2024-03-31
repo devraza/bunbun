@@ -63,7 +63,7 @@ fn main() {
         let desktop = desktop_env().to_string();
         if desktop != "Unknown: Unknown" {
             wm = desktop;
-        } else if !xdg_current_desktop.is_err() {
+        } else if xdg_current_desktop.is_ok() {
             wm = xdg_current_desktop.unwrap();
         } else {
             wm = "N/A".to_string();
