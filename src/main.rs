@@ -50,7 +50,7 @@ fn main() {
     let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
     let user = username();
 
-    let combined = format!("{}@{}", user.italic(), hostname.italic());
+    let combined = format!("{}@{}", user, hostname);
 
     let pretty = distro();
 
@@ -81,7 +81,7 @@ fn main() {
 
     println!();
     if !args.ascii_only {
-        println!("{: <13}{}", "", combined);
+        println!("{: <13}{}", "", combined.bold());
         cpu_arch(&args);
         display_kernel(&args);
         println!("{:>8} {:>6} {}", ascii[0], "OS".red().bold(), pretty);
