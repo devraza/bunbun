@@ -1,5 +1,5 @@
 use clap::Parser;
-use colored::Colorize;
+use owo_colors::{AnsiColors::*, OwoColorize};
 use std::{env::var, path::PathBuf};
 use sysinfo::System;
 use whoami::*;
@@ -86,7 +86,7 @@ fn main() {
         display_kernel(&args);
         println!("{:>8} {:>6} {}", ascii[0], "OS".red().bold(), pretty);
         println!("{:>9} {:>8} {}", ascii[1], "Shell".green().bold(), shell);
-        println!("{:>28} {:>4} {}", ascii[2], "WM".blue().bold(), wm);
+        println!("{:>30} {:>4} {}", ascii[2], "WM".blue().bold(), wm);
     } else {
         for i in ascii {
             println!("  {}", i);
@@ -95,15 +95,11 @@ fn main() {
 
     if !args.hide_colours && !args.ascii_only {
         println!();
-        let colors = [
-            "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white",
-        ];
-        let mut color_string: String = "    ".to_owned();
+        let colors = [Black, Red, Green, Yellow, Blue, Magenta, Cyan, White];
+        let mut color_string: String = "    ".to_string();
         for color in colors {
             color_string.push_str(&format!("{:>3}", "●".color(color)));
         }
         println!("{}", color_string);
     }
-
-    println!();
 }

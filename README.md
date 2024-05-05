@@ -8,7 +8,7 @@
 ## Installation
 To build `bunbun`, you'll need [Rust](https://rust-lang.org) installed:
 ```bash
-$ git clone https://git.devraza.duckdns.org/devraza/bunbun
+$ git clone https://git.devraza.giize.com/devraza/bunbun
 $ cd bunbun
 $ cargo build --release # `--release` adds a few optimisations
 ```

@@ -1,8 +1,9 @@
 Output demo.gif
 
 Set FontSize 40
-Set Width 1100
-Set Height 600
+Set FontFamily "Iosevka Comfy"
+Set Width 950
+Set Height 650
 
 Set Shell "bash"
 
