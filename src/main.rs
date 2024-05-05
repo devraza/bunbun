@@ -57,7 +57,7 @@ fn main() {
     let wm: String;
 
     if cfg!(windows) {
-        wm = "DWM".to_string();
+        wm = "Aero".to_string();
     } else if cfg!(unix) {
         let xdg_current_desktop = var("XDG_CURRENT_DESKTOP");
         let desktop = desktop_env().to_string();
