@@ -9,10 +9,10 @@ license-file = "LICENSE"
 readme = "README.md"
 
 [dependencies]
-clap = { version = "4.5.9", features = ["derive"] }
-owo-colors = "4.0.0"
-sysinfo = "0.30.13"
-whoami = "1.5.1"
+clap = { version = "4.5.18", features = ["derive"] }
+owo-colors = "4.1.0"
+sysinfo = "0.31.4"
+whoami = "1.5.2"
 
 [profile.release]
 strip = true # Strip debug symbols
