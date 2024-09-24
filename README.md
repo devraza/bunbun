@@ -21,7 +21,7 @@ $ cargo build --release # `--release` adds a few optimisations
 ```bash
 nix-shell -p bunbun
 ```
-To install it on NixOS or home-manager, add it to `environment.systemPackages` or `home.packages` respectively.
+To install it on NixOS or home-manager, add `bunbun` to `environment.systemPackages` or `home.packages` respectively.
 
 ## Inspiration
 - [Rosettea/bunnyfetch](https://github.com/Rosettea/bunnyfetch)
