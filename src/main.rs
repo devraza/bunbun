@@ -27,6 +27,10 @@ struct Args {
     /// Hide terminal colours
     #[arg(short = 'z', long, default_value_t = false)]
     hide_colours: bool,
+
+    /// Use the alternative ASCII art
+    #[arg(short = 'A', long, default_value_t = false)]
+    alt_art: bool,
 }
 
 // Display the CPU architecture
@@ -55,11 +59,19 @@ fn hide_combined(args: &Args) {
     }
 }
 
+// Display the ASCII art
+fn ascii_art(args: &Args) -> [String; 3] {
+    if !args.alt_art {
+        let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
+        return ["(\\ /)".to_string(), "( . .)".to_string(), bottom];
+    } else {
+        let top = format!("{}", ".".red()).to_string();
+        return [top, "\\\\  /\\".to_string(), " \\\\//v".to_string()];
+    }
+}
+
 fn main() {
     let args = Args::parse();
-
-    let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
-    let ascii = ["(\\ /)", "( . .)", &bottom];
 
     let pretty = distro();
 
@@ -93,11 +105,28 @@ fn main() {
         hide_combined(&args);
         cpu_arch(&args);
         display_kernel(&args);
-        println!("{:>8} {:>6} {}", ascii[0], "OS".red().bold(), pretty);
-        println!("{:>9} {:>8} {}", ascii[1], "Shell".green().bold(), shell);
-        println!("{:>30} {:>4} {}", ascii[2], "WM".blue().bold(), wm);
+        let ascii = ascii_art(&args);
+
+        let spacings: [usize; 3];
+        if args.alt_art {
+            spacings = [
+                (7 - (ascii[0].len() - 10))+2,
+                (7 - ascii[1].len())+2,
+                (7 - ascii[2].len())+2,
+            ];
+        } else {
+            spacings = [
+                (7 - ascii[0].len())+2,
+                (7 - ascii[1].len())+2,
+                (7 - (ascii[2].len() - 20))+2,
+            ];
+        }
+
+        println!("   {}{} {} {}", ascii[0], " ".to_string().repeat(spacings[0]), "OS".red().bold(), pretty);
+        println!("   {}{} {} {}", ascii[1], " ".to_string().repeat(spacings[1]), "Shell".green().bold(), shell);
+        println!("   {}{} {} {}", ascii[2], " ".to_string().repeat(spacings[2]), "WM".blue().bold(), wm);
     } else {
-        for i in ascii {
+        for i in ascii_art(&args) {
             println!("  {}", i);
         }
     }
