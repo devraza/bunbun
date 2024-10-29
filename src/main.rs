@@ -20,6 +20,10 @@ struct Args {
     #[arg(short = 'k', long)]
     kernel: bool,
 
+    /// Hide the username and hostname
+    #[arg(short = 'u', long)]
+    hide_combined: bool,
+
     /// Hide terminal colours
     #[arg(short = 'z', long, default_value_t = false)]
     hide_colours: bool,
@@ -41,16 +45,22 @@ fn display_kernel(args: &Args) {
     }
 }
 
+// Hide the username@hostname text
+fn hide_combined(args: &Args) {
+    if !args.hide_combined {
+        let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
+        let user = username();
+        let combined = format!("{}@{}", user, hostname);
+        println!("{: <13}{}", "", combined.bold());
+    }
+}
+
 fn main() {
     let args = Args::parse();
 
     let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
     let ascii = ["(\\ /)", "( . .)", &bottom];
 
-    let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
-    let user = username();
-
-    let combined = format!("{}@{}", user, hostname);
 
     let pretty = distro();
 
@@ -81,7 +91,7 @@ fn main() {
 
     println!();
     if !args.ascii_only {
-        println!("{: <13}{}", "", combined.bold());
+        hide_combined(&args);
         cpu_arch(&args);
         display_kernel(&args);
         println!("{:>8} {:>6} {}", ascii[0], "OS".red().bold(), pretty);
