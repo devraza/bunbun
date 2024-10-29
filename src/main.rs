@@ -66,7 +66,7 @@ fn ascii_art(args: &Args) -> [String; 3] {
         return ["(\\ /)".to_string(), "( . .)".to_string(), bottom];
     } else {
         let top = format!("{}", ".".red()).to_string();
-        return [top, "\\\\  /\\".to_string(), " \\\\//v".to_string()];
+        return [top, "\\\\  /\\".to_string(), " \\\\//V".to_string()];
     }
 }
 
