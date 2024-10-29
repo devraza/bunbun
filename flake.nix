@@ -14,7 +14,7 @@
       {
         packages.default = pkgs.rustPlatform.buildRustPackage {
             pname = "bunbun";
-            version = "1.4.0";
+            version = "1.5.0";
             src = ./.;
             cargoLock.lockFile = ./Cargo.lock;
           };
