@@ -63,10 +63,10 @@ fn hide_combined(args: &Args) {
 fn ascii_art(args: &Args) -> [String; 3] {
     if !args.alt_art {
         let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
-        return ["(\\ /)".to_string(), "( . .)".to_string(), bottom];
+        ["(\\ /)".to_string(), "( . .)".to_string(), bottom]
     } else {
         let top = format!("{}", ".".red()).to_string();
-        return [top, "\\\\  /\\".to_string(), " \\\\//V".to_string()];
+        [top, "\\\\  /\\".to_string(), " \\\\//V".to_string()]
     }
 }
 
@@ -107,24 +107,41 @@ fn main() {
         display_kernel(&args);
         let ascii = ascii_art(&args);
 
-        let spacings: [usize; 3];
-        if args.alt_art {
-            spacings = [
-                (7 - (ascii[0].len() - 10))+2,
-                (7 - ascii[1].len())+2,
-                (7 - ascii[2].len())+2,
-            ];
+        let spacings: [usize; 3] = if args.alt_art {
+            [
+                (7 - (ascii[0].len() - 10)) + 2,
+                (7 - ascii[1].len()) + 2,
+                (7 - ascii[2].len()) + 2,
+            ]
         } else {
-            spacings = [
-                (7 - ascii[0].len())+2,
-                (7 - ascii[1].len())+2,
-                (7 - (ascii[2].len() - 20))+2,
-            ];
-        }
+            [
+                (7 - ascii[0].len()) + 2,
+                (7 - ascii[1].len()) + 2,
+                (7 - (ascii[2].len() - 20)) + 2,
+            ]
+        };
 
-        println!("   {}{} {} {}", ascii[0], " ".to_string().repeat(spacings[0]), "OS".red().bold(), pretty);
-        println!("   {}{} {} {}", ascii[1], " ".to_string().repeat(spacings[1]), "Shell".green().bold(), shell);
-        println!("   {}{} {} {}", ascii[2], " ".to_string().repeat(spacings[2]), "WM".blue().bold(), wm);
+        println!(
+            "   {}{} {} {}",
+            ascii[0],
+            " ".to_string().repeat(spacings[0]),
+            "OS".red().bold(),
+            pretty
+        );
+        println!(
+            "   {}{} {} {}",
+            ascii[1],
+            " ".to_string().repeat(spacings[1]),
+            "Shell".green().bold(),
+            shell
+        );
+        println!(
+            "   {}{} {} {}",
+            ascii[2],
+            " ".to_string().repeat(spacings[2]),
+            "WM".blue().bold(),
+            wm
+        );
     } else {
         for i in ascii_art(&args) {
             println!("  {}", i);
