@@ -52,8 +52,8 @@ fn display_kernel(args: &Args) {
 // Hide the username@hostname text
 fn hide_combined(args: &Args) {
     if !args.hide_combined {
-        let hostname = fallible::hostname().unwrap_or(String::from("N/A"));
-        let user = username();
+        let hostname = hostname().unwrap_or(String::from("N/A"));
+        let user = username().unwrap_or(String::from("N/A"));
         let combined = format!("{}@{}", user, hostname);
         println!("{: <13}{}", "", combined.bold());
     }
@@ -73,7 +73,7 @@ fn ascii_art(args: &Args) -> [String; 3] {
 fn main() {
     let args = Args::parse();
 
-    let pretty = distro();
+    let pretty = distro().unwrap_or(String::from("N/A"));
 
     let wm: String;
 
@@ -81,7 +81,7 @@ fn main() {
         wm = "Aero".to_string();
     } else if cfg!(unix) {
         let xdg_current_desktop = var("XDG_CURRENT_DESKTOP");
-        let desktop = desktop_env().to_string();
+        let desktop = desktop_env().unwrap_or(whoami::DesktopEnv::Unknown(String::from("N/A"))).to_string();
         if desktop != "Unknown: Unknown" {
             wm = desktop;
         } else if xdg_current_desktop.is_ok() {
