@@ -1,7 +1,7 @@
 [package]
 name = "bunbun"
 description = "A simple and adorable sysinfo utility."
-authors = ["Muhammad Nauman Raza <devraza@skiff.com>"]
+authors = ["Muhammad Nauman Raza <devraza.hazard643@slmail.me>"]
 version = "1.5.0"
 edition = "2021"
 categories = ["command-line-utilities"]
