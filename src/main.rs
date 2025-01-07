@@ -82,7 +82,7 @@ fn main() {
     } else if cfg!(unix) {
         let xdg_current_desktop = var("XDG_CURRENT_DESKTOP");
         let desktop = desktop_env().unwrap_or(whoami::DesktopEnv::Unknown(String::from("N/A"))).to_string();
-        if desktop != "Unknown: Unknown" {
+        if desktop != "Unknown: N/A" {
             wm = desktop;
         } else if xdg_current_desktop.is_ok() {
             wm = xdg_current_desktop.unwrap();
