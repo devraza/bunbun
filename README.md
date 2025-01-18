@@ -13,9 +13,6 @@ $ cd bunbun
 $ cargo build --release # `--release` adds a few optimisations
 ```
 
-> **Using the flake!**
-> This repository contains a `flake.nix` - if you have Nix installed, you can run `nix run github:devraza/bunbun` to compile and run the program.
-
 ### NixOS
 `bunbun` is now packaged on NixOS/nixpkgs, maintained by [GaetanLepage](https://github.com/GaetanLepage)! If you have Nix installed, you can try it with:
 ```bash
