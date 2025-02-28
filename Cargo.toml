@@ -9,8 +9,8 @@ license-file = "LICENSE"
 readme = "README.md"
 
 [dependencies]
-clap = { version = "4.5.27", features = ["derive"] }
-owo-colors = "4.1.0"
+clap = { version = "4.5.31", features = ["derive"] }
+owo-colors = "4.2.0"
 sysinfo = "0.33.1"
 whoami = "2.0.0-pre.0"
 
