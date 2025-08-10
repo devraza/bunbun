@@ -37,7 +37,7 @@ struct Args {
 fn cpu_arch(args: &Args) {
     if args.arch {
         let arch = arch();
-        println!("{:>17} {}", "Arch".cyan().bold(), arch);
+        println!("{:>17} {arch}", "Arch".cyan().bold());
     }
 }
 
@@ -45,7 +45,7 @@ fn cpu_arch(args: &Args) {
 fn display_kernel(args: &Args) {
     if args.kernel {
         let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
-        println!("{:>19} {}", "Kernel".yellow().bold(), kernel);
+        println!("{:>19} {kernel}", "Kernel".yellow().bold());
     }
 }
 
@@ -54,7 +54,7 @@ fn hide_combined(args: &Args) {
     if !args.hide_combined {
         let hostname = hostname().unwrap_or(String::from("N/A"));
         let user = username().unwrap_or(String::from("N/A"));
-        let combined = format!("{}@{}", user, hostname);
+        let combined = format!("{user}@{hostname}");
         println!("{: <13}{}", "", combined.bold());
     }
 }
@@ -144,7 +144,7 @@ fn main() {
         );
     } else {
         for i in ascii_art(&args) {
-            println!("  {}", i);
+            println!("  {i}");
         }
     }
 
@@ -155,6 +155,6 @@ fn main() {
         for color in colors {
             color_string.push_str(&format!("{:>3}", "●".color(color)));
         }
-        println!("{}", color_string);
+        println!("{color_string}");
     }
 }
