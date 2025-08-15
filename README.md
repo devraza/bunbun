@@ -25,4 +25,4 @@ To install it on NixOS or home-manager, add `bunbun` to `environment.systemPacka
 - [elenapan's `bunnyfetch` script](https://github.com/elenapan/dotfiles/blob/master/bin/bunnyfetch)
 
 ## License
-This project is covered by the [MIT License](./LICENSE).
+This project is covered by the [Mozilla Public License 2.0](./LICENSE.md).
