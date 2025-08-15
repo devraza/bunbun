@@ -13,6 +13,8 @@ $ cd bunbun
 $ cargo build --release # `--release` adds a few optimisations
 ```
 
+This will make a binary in `target/release` with the name `bunbun`. To use this as you would any other program, add it to a directory on your `$PATH`, such as `/usr/local/bin` or `$HOME/.local/bin`
+
 ### NixOS
 `bunbun` is now packaged on NixOS/nixpkgs, maintained by [GaetanLepage](https://github.com/GaetanLepage)! If you have Nix installed, you can try it with:
 ```bash
