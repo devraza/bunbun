@@ -22,6 +22,11 @@ nix-shell -p bunbun
 ```
 To install it on NixOS or home-manager, add `bunbun` to `environment.systemPackages` or `home.packages` respectively.
 
+## Platform support
+`bunbun` primarily supports for Linux; especially NixOS due to it being the operating system I personally use. Secondary support is available for MacOS which I sometimes test on. Windows has the least support, but should be expected to largely work.
+
+> **Note** Should you encounter any problems, please do let me know! Either with an [issue](https://github.com/devraza/bunbun/issues/new) here on GitHub or via [e-mail](mailto:devraza.hazard643@slmail.me).
+
 ## Inspiration
 - [Rosettea/bunnyfetch](https://github.com/Rosettea/bunnyfetch)
 - [elenapan's `bunnyfetch` script](https://github.com/elenapan/dotfiles/blob/master/bin/bunnyfetch)
