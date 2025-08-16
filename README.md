@@ -1,5 +1,5 @@
 # bunbun
-> A simple and adorable sysinfo utility written in Rust.
+A simple and adorable sysinfo utility.
 
 <p align="center">
   <img src="./demo/demo.gif" alt="bunbun demo" width="400"/>
