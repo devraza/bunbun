@@ -2,7 +2,7 @@
 name = "bunbun"
 description = "A simple and adorable sysinfo utility."
 authors = ["Muhammad Nauman Raza <devraza.hazard643@slmail.me>"]
-version = "1.5.0"
+version = "1.6.0"
 edition = "2024"
 categories = ["command-line-utilities"]
 license = "MPL-2.0"
