@@ -31,5 +31,14 @@ To install it on NixOS or home-manager, add `bunbun` to `environment.systemPacka
 - [Rosettea/bunnyfetch](https://github.com/Rosettea/bunnyfetch)
 - [elenapan's `bunnyfetch` script](https://github.com/elenapan/dotfiles/blob/master/bin/bunnyfetch)
 
+## Versioning
+Releases of `bunbun` are, for the most part, discretionary.
+
+`major.minor.patch` is the general format for versions, with:
+- `major` being incremented when I think `bunbun` has reached a significant milestone
+- `minor` being incremented when I feel enough has been done to warrant a new release
+- `patch` being incremented when I want to push a release fixing something small
+
+
 ## License
 This project is covered by the [Mozilla Public License 2.0](./LICENSE.md).
