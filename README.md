@@ -25,7 +25,7 @@ To install it on NixOS or home-manager, add `bunbun` to `environment.systemPacka
 ## Platform support
 `bunbun` primarily supports Linux; NixOS particularly. Secondary support is available for MacOS which I sometimes test on. Windows has the least support, but should be expected to largely work.
 
-> **Note** Should you encounter any problems, please do let me know! Either with an [issue](https://github.com/devraza/bunbun/issues/new) here on GitHub or via [e-mail](mailto:devraza.hazard643@slmail.me).
+> **Note** Should you encounter any problems, please do let me know! Either with an [issue on GitHub](https://github.com/devraza/bunbun/issues/new) or via [e-mail](mailto:devraza.hazard643@slmail.me).
 
 ## Inspiration
 - [Rosettea/bunnyfetch](https://github.com/Rosettea/bunnyfetch)
