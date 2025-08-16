@@ -1,8 +1,10 @@
 use clap::Parser;
 use owo_colors::{AnsiColors::*, OwoColorize};
 use std::{env::var, path::PathBuf};
-use sysinfo::System;
 use whoami::*;
+
+pub mod util;
+use util::*; // from crate util.rs
 
 /// A simple and adorable sysinfo utility written in Rust.
 #[derive(Parser, Debug)]
@@ -44,7 +46,7 @@ fn cpu_arch(args: &Args) {
 // Display the kernel version
 fn display_kernel(args: &Args) {
     if args.kernel {
-        let kernel = System::kernel_version().unwrap_or(String::from("N/A"));
+        let kernel = kernel().unwrap_or(String::from("N/A"));
         println!("{:>19} {kernel}", "Kernel".yellow().bold());
     }
 }
@@ -81,7 +83,9 @@ fn main() {
         wm = "Aero".to_string();
     } else if cfg!(unix) {
         let xdg_current_desktop = var("XDG_CURRENT_DESKTOP");
-        let desktop = desktop_env().unwrap_or(whoami::DesktopEnv::Unknown(String::from("N/A"))).to_string();
+        let desktop = desktop_env()
+            .unwrap_or(whoami::DesktopEnv::Unknown(String::from("N/A")))
+            .to_string();
         if desktop != "Unknown: N/A" {
             wm = desktop;
         } else if xdg_current_desktop.is_ok() {
