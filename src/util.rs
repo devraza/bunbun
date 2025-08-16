@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{prelude::*, BufReader};
+use std::io::{BufReader, prelude::*};
 
 #[cfg(target_os = "linux")]
 pub fn kernel() -> std::io::Result<String> {

@@ -29,10 +29,6 @@ struct Args {
     /// Hide terminal colours
     #[arg(short = 'z', long, default_value_t = false)]
     hide_colours: bool,
-
-    /// Use the alternative ASCII art
-    #[arg(short = 'A', long, default_value_t = false)]
-    alt_art: bool,
 }
 
 // Display the CPU architecture
@@ -58,17 +54,6 @@ fn hide_combined(args: &Args) {
         let user = username().unwrap_or(String::from("N/A"));
         let combined = format!("{user}@{hostname}");
         println!("{: <13}{}", "", combined.bold());
-    }
-}
-
-// Display the ASCII art
-fn ascii_art(args: &Args) -> [String; 3] {
-    if !args.alt_art {
-        let bottom = format!("c({})({})", "\"".red(), "\"".red()).to_string();
-        ["(\\ /)".to_string(), "( . .)".to_string(), bottom]
-    } else {
-        let top = format!("{}", ".".red()).to_string();
-        [top, "\\\\  /\\".to_string(), " \\\\//V".to_string()]
     }
 }
 
@@ -105,25 +90,23 @@ fn main() {
         .unwrap();
 
     println!();
+
+    let ascii = [
+            "(\\ /)".to_string(),
+            "( . .)".to_string(),
+            format!("c({})({})", "\"".red(), "\"".red()).to_string(),
+        ];
+
     if !args.ascii_only {
         hide_combined(&args);
         cpu_arch(&args);
         display_kernel(&args);
-        let ascii = ascii_art(&args);
-
-        let spacings: [usize; 3] = if args.alt_art {
-            [
-                (7 - (ascii[0].len() - 10)) + 2,
-                (7 - ascii[1].len()) + 2,
-                (7 - ascii[2].len()) + 2,
-            ]
-        } else {
-            [
-                (7 - ascii[0].len()) + 2,
-                (7 - ascii[1].len()) + 2,
-                (7 - (ascii[2].len() - 20)) + 2,
-            ]
-        };
+ 
+        let spacings: [usize; 3] = [
+            (7 - ascii[0].len()) + 2,
+            (7 - ascii[1].len()) + 2,
+            (7 - (ascii[2].len() - 20)) + 2,
+        ];
 
         println!(
             "   {}{} {} {}",
@@ -147,7 +130,7 @@ fn main() {
             wm
         );
     } else {
-        for i in ascii_art(&args) {
+        for i in ascii {
             println!("  {i}");
         }
     }
