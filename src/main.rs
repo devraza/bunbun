@@ -92,16 +92,16 @@ fn main() {
     println!();
 
     let ascii = [
-            "(\\ /)".to_string(),
-            "( . .)".to_string(),
-            format!("c({})({})", "\"".red(), "\"".red()).to_string(),
-        ];
+        "(\\ /)".to_string(),
+        "( . .)".to_string(),
+        format!("c({})({})", "\"".red(), "\"".red()).to_string(),
+    ];
 
     if !args.ascii_only {
         hide_combined(&args);
         cpu_arch(&args);
         display_kernel(&args);
- 
+
         let spacings: [usize; 3] = [
             (7 - ascii[0].len()) + 2,
             (7 - ascii[1].len()) + 2,
