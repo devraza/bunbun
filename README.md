@@ -41,4 +41,4 @@ Releases of `bunbun` are, for the most part, discretionary.
 
 
 ## License
-This project is covered by the [Mozilla Public License 2.0](./LICENSE.md).
+This project is covered by the [Mozilla Public License 2.0](./LICENSE).
