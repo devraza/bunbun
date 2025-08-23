@@ -9,9 +9,9 @@ license = "MPL-2.0"
 readme = "README.md"
 
 [dependencies]
-clap = { version = "4.5.43", features = ["derive"] }
+clap = { version = "4.5.45", features = ["derive"] }
 owo-colors = "4.2.2"
-whoami = "2.0.0-pre.2"
+whoami = "2.0.0-pre.3"
 
 [profile.release]
 strip = true # Strip debug symbols
